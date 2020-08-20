@@ -9,7 +9,9 @@ class Api_model extends CI_Model
 
 	function insert_api($data)
 	{
+		//print_r($data);die;
 		$datas = $data[0];
+		//print_r($datas);die;
 		$this->db->insert('tbl_sample', $datas);
 	}
 
@@ -20,9 +22,18 @@ class Api_model extends CI_Model
 		return $query->result_array();
 	}
 
+	function emailchecker($email)
+	{
+		$this->db->where('email', $email);
+		$query = $this->db->get('tbl_sample');
+		return $query->result_array();
+	}
+
 	function update_api($user_id, $data)
 	{
 		$datas = $data[0];
+		//print_r($datas);die;
+		//print_r($user_id);die;
 		//print_r($datas);die;
 		$this->db->where('id', $user_id);
 		$this->db->update('tbl_sample', $datas);
